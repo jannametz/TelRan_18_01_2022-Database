@@ -1,0 +1,61 @@
+use learn;
+
+-- Homework from 09.05.2022 created Jana Metz 
+-- create database education; 
+drop table students;
+create table if not exists students(
+id_students integer,
+students_name varchar(64) not NULL,
+students_lastname varchar(64) not NULL,
+gender ENUM ( 'M', 'F' ) not NULL
+);
+
+insert into students(id_students, students_name, students_lastname, gender) values (18099,"Viktoria", "Kuadros", 'F');
+insert into students values ('20060101','Lion','Charles', 'M');
+insert into students values ('20060102','Anna','Marchenko', 'F');
+insert into students values ('20060103','Heinrich','Metz', 'M');
+insert into students values ('20060104','Inna','Kuadros', 'F');
+insert into students values ('20060105','Maximilian Percy','Metz', 'M');
+commit;
+select * from students;
+-- -----------------------------------------------------
+-- Creating the Tables in your own Database students
+
+
+drop table teachers;
+create table if not exists teachers(
+id_teachers integer,
+teachers_name varchar(64) not NULL,
+teachers_lastname varchar(64) not NULL,
+age integer
+);
+
+insert into teachers(id_teachers, teachers_name, teachers_lastname, age) values (20220, "Mischell", "Kant", 67);
+insert into teachers values ('20221','Daniel','Charles', 66),
+                            ('20222','Jana','Bnakes',31 ),
+                            ('20223','Garry','Poter', 27),
+                            ('20224','Benjamin','Euklid', 45),
+                            ('20225','Bubble','Heap', 55),
+                            ('20226','Ivan','Bigdata', 39);
+commit;
+select * from teachers;
+
+-- --------------------------------------------------------
+-- Creating the Tables in your own Database teachers
+
+drop table lesson;
+create table if not exists lesson(
+id_lesson integer,
+subject_lesson varchar(64) not NULL,
+teachers_id integer
+);
+
+insert into lesson(id_lesson, subject_lesson, teachers_id) values (901 , '3D-Computergrafik II' , 20220);
+insert into lesson values ('902','Softwaretechnik I',20221),
+                            ('903','Theoretische Informatik I',20222),
+                            ('904','Modellierung II',20223),
+                            ('905','Mathematik II', 20224),
+                            ('906','Einführung in die Programmiertechnik II', 20225),
+                            ('907','Competitive Programming', 20226);
+commit;
+select * from lesson;
