@@ -1,0 +1,72 @@
+HOMEWORK from 24.05.2022 
+
+Link for ER diagram to derivation:
+https://www.sql-ex.ru/learn_exercises.php?LN=1
+
+SPLITTING YOUR TASK INTO SUBTASKS for ex. First task logical thinking
+— Select * from employees;
+— Select * from offices;
+— lastName ->fields
+— firstName->fields
+— city -> fields
+—  officeCode —>  Schlüssel key_id in 2 Tabellen
+— 0) read the task
+—  1) find table
+—  2) find the same key id in two tables 
+— 3) find fields
+— 4) find condition of the problem  —> find all employees from (Boston									                 where city = ‚Boston‘)
+— 5) Check result
+
+
+1) Найти всех сотрудников из Бостона
+
+SELECT
+	t1.lastName,
+	t1.firstName,
+	t2.city      
+FROM employees t1
+INNER JOIN offices t2
+ON t1.officeCode = t2.officeCode
+WHERE t2.city = 'Boston‘;
+
+
+2) Найти названия компаний, которые делали оплату в 2005 году (таблички customers и payments)
+
+SELECT
+	t1.customerName,	
+	t2.paymentDate
+FROM customers t1
+INNER JOIN payments t2
+ON t1.customerNumber = t2.customerNumber
+WHERE t2.paymentDate between ‚2005-01-01‘ and ‚2005-12-31
+ODER BY t2.paymentDate;
+
+
+3) Найти все заказы, которые были сделаны клиентами из Madrid и со статусом Resolved
+
+SELECT 
+	t1.contactLastName,
+	t1.contactFirstName,
+	t1.city,
+	t2.status,
+	t2.orderNumber
+FROM customers t1
+INNER JOIN orders t2
+ON  t1.customerNumber = t2.customerNumber
+WHERE t1.city = 'Madrid'
+AND t2.status = 'Resolved';
+
+
+4) Найти сотрудников, у которых jobTitle отличается от jobTitle его менеджера (reportsTo)
+
+SELECT 
+	t1.firstName,
+	t1.lastName,
+	t1.jobTitle AS employeeJobTitle,
+	t2.jobTitle AS managerJobTitle,
+	t2.firstName AS managerFirtsName,
+	t2.lastName AS managerLastName
+FROM employees t1
+INNER JOIN employees t2
+ON t1.reportsTo = t2.employeeNumber 
+WHERE t1.jobTitle != t2.jobTitle;
