@@ -1,0 +1,183 @@
+HOMEWORK from 27.0.2022 LEFT JOIN && 
+Необходимо решить данные номера задач на сайте https://www.sql-ex.ru/learn_exercises.php?LN=1
+(6, 7, 9, 14, 16, 29, 34, 36, 38, 49, 50)
+
+
+— 6) For each maker producing laptops with a hard drive capacity of 10 Gb or higher, find the speed of such laptops. Result set: maker, speed.
+
+SELECT DISTINCT 
+	t1.maker, 
+	t2.speed
+FROM Product t1
+LEFT JOIN Laptop t2
+ON t2.model = t1.model
+WHERE hd >= 10; 
+— 7) Find out the models AND prices for ALL the products (of any TYPE) produced BY maker B.
+
+SELECT
+	t2.model,
+	t1.price	
+FROM PC t1
+INNER JOIN Product t2
+ON t1.model = t2.model
+WHERE t2.maker = ‚B‘;
+
+UNION
+
+SELECT 
+	t2.model,
+	t3.price	      
+FROM Laptop t3
+INNER JOIN Product t2
+ON t3.model = t2.model
+WHERE t2.maker = ‚B‘;
+
+UNION
+
+SELECT 
+	t2.model,
+	t4.price
+FROM Printer t4
+INNER JOIN Product t2
+ON t4.model = t2.model
+WHERE t2.maker = ‚B‘;
+
+— 9) Find the makers of PCs with a processor speed of 450 MHz or more. Result set: maker.
+
+SELECT maker AS Maker
+FROM Product t1
+LEFT JOIN PC t2
+ON t1.model = t2.model
+WHERE t2.speed >= 450
+GROUP BY maker;
+
+
+— 14) For the ships in the Ships table that have at least 10 guns, get the class, name, and country.
+
+
+SELECT 
+	t1.class,
+	t1.name,
+	t2.country
+FROM Ships t1
+INNER JOIN Classes t2
+ON t1.class = t2.class
+WHERE t2.numGuns >= 10;
+
+
+
+
+— 16) Get pairs of PC models with identical speeds and the same RAM capacity.
+— Each resulting pair should be displayed only once, i.e. (i, j) but not (j, i). 
+— Result set: model with the bigger number, model with the smaller number, speed, and RAM.
+ SELECT DISTINCT 
+	t1.model, 
+	t2.model, 
+	t1.speed, 
+	t1.ram
+FROM PC AS t1 
+JOIN PC AS t2
+ON t1.speed = t2.speed 
+AND t1.ram = t2.ram
+WHERE t1.model > t2.model;
+
+— 29) Under the assumption that receipts of money (inc) and payouts (out) are registered not
+— more than once a day for each collection point [i.e. the primary key consists of (point, date)], 
+— write a query displaying cash flow data (point, date, income, expense). 
+— Use Income_o and Outcome_o tables.
+
+SELECT 
+	t1.point, 
+	t1.date, 
+	t1.inc,
+	t2.out
+FROM Income_o t1 
+LEFT JOIN Outcome_o t2
+ON t1.point = t2.point
+AND t1.date = t2.date
+
+UNION
+
+SELECT 
+	t2.point, 
+	t2.date, 
+	t1.inc, 
+	t2.out
+FROM Outcome_o t2 
+LEFT JOIN Income_o t1
+ON t2.point = t1.point
+AND t2.date = t1.date;
+
+— 34) In accordance with the Washington Naval Treaty concluded in the beginning of 1922, it was prohibited to build — battle ships with a displacement of more than 35 thousand tons. 
+— Get the ships violating this treaty (only consider ships for which the year of launch is known). 
+— List the names of the ships.
+
+SELECT DISTINCT 
+	name 
+FROM Classes AS t1 
+JOIN Ships AS t2
+ON t1.class = t2.class 
+WHERE launched >= 1922 
+AND displacement > 35000
+AND TYPE = 'bb‘;
+
+— 36) List the names of lead ships in the database (including the Outcomes table).
+
+SELECT 
+	name
+FROM Ships
+WHERE name IN (
+SELECT 
+	class
+FROM Classes
+)
+
+UNION
+
+SELECT 
+	ship
+FROM Outcomes
+WHERE ship IN (
+SELECT 
+	class
+FROM Classes
+);
+
+
+— 38) Find countries that ever had classes of both battleships (‘bb’) and cruisers (‘bc’).
+ 
+SELECT DISTINCT 
+	country
+FROM Classes
+WHERE TYPE = 'bb'
+AND country IN (
+SELECT DISTINCT 
+	country
+FROM Classes
+WHERE TYPE = 'bc'
+);
+
+— 49) Find the names of the ships having a gun caliber of 16 inches (including ships in the Outcomes table).
+
+SELECT 
+	name
+FROM Ships, Classes
+WHERE Ships.class = Classes.class
+AND bore = 16
+
+UNION
+
+SELECT 
+	ship
+FROM Outcomes, Classes
+WHERE Outcomes.ship = Classes.class
+AND bore = 16;
+ — 50) Find the battles in which Kongo-class ships from the Ships table were engaged.
+ SELECT 
+	t1.battle
+FROM Outcomes t1
+INNER JOIN Ships t2
+ON t1.ship = t2.name
+AND t2.class = 'Kongo'
+
+
