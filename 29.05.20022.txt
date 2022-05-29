@@ -1,0 +1,2 @@
+1. Zuzeifigetkhjzklui
+2. selectdistinctnamefrom classes t1join  ships t2on t1.class=t2.classwhere launched >=1922 and displacement >35000 and type ='bb'
