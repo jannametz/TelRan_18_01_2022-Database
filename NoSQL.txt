@@ -1,0 +1,864 @@
+
+
+Добрый вечер ☀️
+Проработанные видео и  класная Работа 25.06.2022 по 28.06.2022
+
+
+NoSQL-Datenbanken verwenden verschiedene Datenmodelle für den Zugriff auf und die Verwaltung von Daten.
+
+
+use mydbpercy
+
+'switched to db mydbpercy'
+db.createCollection('users')
+
+{ ok: 1 }
+db.users.insertOne(name: 'Percy',)
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.insertOne({name: 'Percy', lastname: 'Metz', age: 2} )
+
+{ acknowledged: true,
+insertedId: ObjectId("62c7b8ff806eeaffdf74bc84") }
+db.users.insertMany([
+{
+name:  Anna
+lastname: Metz
+age: 25
+},
+{
+name:  Jana
+lastname: Metz
+age: 30
+},
+{
+name: Armando
+lastname: Metz
+age: 56
+}
+])
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.insertMany(
+
+[
+{
+name: Anna
+lastname: Metz
+age: 25
+},
+{
+name: Armando
+lastname: Metz
+age: 56
+},
+{
+name: Inna
+lastname: Metz
+age: 49
+}
+])
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.insertMany([{
+name: Anna
+lastname: Metz
+age: 25
+},
+{
+name: Armando
+lastname: Metz
+age: 56
+},
+{
+name: Inna
+lastname: Metz
+age: 49
+}])
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.insertMany([{name: 'Percy', lastname: 'Metz', age: 2}, {name: 'Lola', lastname: 'Metz', age: 20}, {name: 'Anna', lastname: 'Metz', age: 25}])
+
+{ acknowledged: true,
+insertedIds:
+{ '0': ObjectId("62c7bd2a806eeaffdf74bc85"),
+'1': ObjectId("62c7bd2a806eeaffdf74bc86"),
+'2': ObjectId("62c7bd2a806eeaffdf74bc87") } }
+db.use
+
+mydbpercy.use
+
+db.users.insertMany([{
+name: ‚Anna‘
+lastname: ‚Angels‘
+age: 70
+},
+{
+name: ‚Armando‘
+lastname: ‚Metz‘
+age: 58
+},
+{
+name: ‚Inna‘
+lastname: ‚Metz‘
+age: 53
+}])
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.find()
+
+{ _id: ObjectId("62c7b8ff806eeaffdf74bc84"),
+name: 'Percy',
+lastname: 'Metz',
+age: 2 }
+{ _id: ObjectId("62c7bd2a806eeaffdf74bc85"),
+name: 'Percy',
+lastname: 'Metz',
+age: 2 }
+{ _id: ObjectId("62c7bd2a806eeaffdf74bc86"),
+name: 'Lola',
+lastname: 'Metz',
+age: 20 }
+{ _id: ObjectId("62c7bd2a806eeaffdf74bc87"),
+name: 'Anna',
+lastname: 'Metz',
+age: 25 }
+db.users.find({ age: { $gte: 20}})
+
+{ _id: ObjectId("62c7bd2a806eeaffdf74bc86"),
+name: 'Lola',
+lastname: 'Metz',
+age: 20 }
+{ _id: ObjectId("62c7bd2a806eeaffdf74bc87"),
+name: 'Anna',
+lastname: 'Metz',
+age: 25 }
+db.users.find({ age: { $lte: 20}})
+
+{ _id: ObjectId("62c7b8ff806eeaffdf74bc84"),
+name: 'Percy',
+lastname: 'Metz',
+age: 2 }
+{ _id: ObjectId("62c7bd2a806eeaffdf74bc85"),
+name: 'Percy',
+lastname: 'Metz',
+age: 2 }
+{ _id: ObjectId("62c7bd2a806eeaffdf74bc86"),
+name: 'Lola',
+lastname: 'Metz',
+age: 20 }
+db.users.find({ age: { $lt: 20}})
+
+{ _id: ObjectId("62c7b8ff806eeaffdf74bc84"),
+name: 'Percy',
+lastname: 'Metz',
+age: 2 }
+{ _id: ObjectId("62c7bd2a806eeaffdf74bc85"),
+name: 'Percy',
+lastname: 'Metz',
+age: 2 }
+db.users.find({ age: { $lt: 20}})
+
+{ _id: ObjectId("62c7b8ff806eeaffdf74bc84"),
+name: 'Percy',
+lastname: 'Metz',
+age: 2 }
+{ _id: ObjectId("62c7bd2a806eeaffdf74bc85"),
+name: 'Percy',
+lastname: 'Metz',
+age: 2 }
+db.users.updateMany( )
+
+
+MongoshInvalidInputError: [COMMON-10001] Missing required argument at position 0 (Collection.updateMany)
+
+db.users.updateMany({ age: {lte: 2}}, {$set: {age: 50}})
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 0,
+modifiedCount: 0,
+upsertedCount: 0 }
+db.users.updateMany({ age: {lte: 30}}, {$set: {age: 50}})
+
+
+db.users.updateMany({age: {gte: 2}}, {$set: {age: 20}})
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 0,
+modifiedCount: 0,
+upsertedCount: 0 }
+db.users.insertMany([{
+name: 'Anna‘
+lastname: 'Angels‘
+age: 18
+},
+{
+name: 'Armando‘
+lastname: 'Metz‘
+age: 53
+},
+{
+name: 'Inna‘
+lastname: 'Metz‘
+age: 53
+}])
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.insertMany([{
+name: 'Anna‘
+lastname: 'Angels‘
+age: 18
+},
+{
+name: 'Armando‘
+lastname: 'Metz‘
+age: 53
+},
+{
+name: 'Inna‘
+lastname: 'Metz‘
+age: 53
+}])
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.insertMany([{
+name: 'Anna‘,
+lastname: 'Angels‘,
+age: 18
+},
+{
+name: 'Armando‘,
+lastname: 'Metz‘,
+age: 53
+},
+{
+name: 'Inna‘,
+lastname: 'Metz‘,
+age: 53
+}])
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.insertMany([{ name: 'Anna', lastname: 'Angels‘, age: 18 },
+{
+name: 'Armando‘,
+lastname: 'Metz‘,
+age: 53
+},
+{
+name: 'Inna‘,
+lastname: 'Metz‘,
+age: 53
+}])
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.insertOne({name: 'Marie', lastname: 'Loli', age: 30},  {name: 'Max', lastname: 'Google', age: 38}, {name: 'William', lastname: 'Pounte', age: 29})
+
+{ acknowledged: true,
+insertedId: ObjectId("62c7c4aa806eeaffdf74bc88") }
+db.users.insertOne([{name: 'Marie', lastname: 'Loli', age: 30},{name: 'Max', lastname: 'Google', age: 38}, {name: 'William', lastname: 'Pounte', age: 29}])
+
+{ acknowledged: true,
+insertedId: ObjectId("62c7c4c8806eeaffdf74bc89") }
+db.users.insertMany([{name: 'Marie', lastname: 'Loli', age: 30},{name: 'Max', lastname: 'Google', age: 38}, {name: 'William', lastname: 'Pounte', age: 29}])
+
+{ acknowledged: true,
+insertedIds:
+{ '0': ObjectId("62c7c50b806eeaffdf74bc8a"),
+'1': ObjectId("62c7c50b806eeaffdf74bc8b"),
+'2': ObjectId("62c7c50b806eeaffdf74bc8c") } }
+db.users.updateMany({age: {lte: 38}}, {$set: {age: 40}})
+{
+name: 'Armando‘,
+lastname: 'Metz‘,
+age: 53
+},
+{
+name: 'Inna‘,
+lastname: 'Metz‘,
+age: 49
+}])
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.updateMany({age: {$lte: 38}}, {$set: {age: 40}})
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 8,
+modifiedCount: 8,
+upsertedCount: 0 }
+db.users.updateOne({age: 40}, {$set: {age: 29}})
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+modifiedCount: 1,
+upsertedCount: 0 }
+db.users.updateOne({age: 40}, {$set: {age: 18}})
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+modifiedCount: 1,
+upsertedCount: 0 }
+db.users.updateOne({age: 40}, {$set: {age: 22}})
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+modifiedCount: 1,
+upsertedCount: 0 }
+db.users.updateOne({age: 40}, {$set: {age: 42}})
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+modifiedCount: 1,
+upsertedCount: 0 }
+db.users.updateOne({age: 40}, {$set: {age: 19}})
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+modifiedCount: 1,
+upsertedCount: 0 }
+db.users.deleteMany({age: 40})
+
+{ acknowledged: true, deletedCount: 3 }
+db.users.deleteOne({age: 29})
+
+{ acknowledged: true, deletedCount: 1 }
+db.createCollection('dbjana')
+
+{ ok: 1 }
+use mydb_1
+
+'switched to db mydb_1'
+db.createCollection('products')
+
+{ ok: 1 }
+db.products.insertMany([{ titel: Mersedes EQE 350+, price: 55.000, count: 4 }, { titel: Porsche Cayenne, price: 89.000, count: 2 }, { titel: VW Polo, price: 25.000, count: 1 }, { titel: Land Rover Discovery Sport, price: 62.000, count: 5 }, { titel: Lamborghini, price: 450.000, count: 2 } ])
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.products.insertMany([{ titel: 'Mersedes EQE 350+', price: 55.000, count: 4 }, { titel: 'Porsche Cayenne', price: 89.000, count: 2 }, { titel: 'VW Polo', price: 25.000, count: 1 }, { titel: 'Land Rover Discovery Sport', price: 62.000, count: 5 }, { titel: 'Lamborghini', price: 450.000, count: 2 } ])
+
+{ acknowledged: true,
+insertedIds:
+{ '0': ObjectId("62c7e190806eeaffdf74bc8d"),
+'1': ObjectId("62c7e190806eeaffdf74bc8e"),
+'2': ObjectId("62c7e190806eeaffdf74bc8f"),
+'3': ObjectId("62c7e190806eeaffdf74bc90"),
+'4': ObjectId("62c7e190806eeaffdf74bc91") } }
+db.products.updateOne({{titel: 'Mersedes EQE 350+', price: 55000.000, count: 4})
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.products.updateOne({ titel: 'Mersedes EQE 350+', price: 55.000, count: 4 }) 
+
+
+MongoInvalidArgumentError: Update document requires atomic operators
+
+db.products.updateOne({ {price: 55.000}, {$set: {price: 55000.00}}) 
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.products.updateOne({{price: 55.000}, {$set: {price: 55000}}) 
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.products.updateOne({price: 55.000}, {$set: {price: 55000}}) 
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+modifiedCount: 1,
+upsertedCount: 0 }
+db.products.updateOne({price: 89}, {$set: {price: 89000.00}}) 
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+modifiedCount: 1,
+upsertedCount: 0 }
+db.products.updateOne({price: 25}, {$set: {price: 25000.00}}) 
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+modifiedCount: 1,
+upsertedCount: 0 }
+db.products.updateOne({price: 62}, {$set: {price: 62000.00}}) 
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+modifiedCount: 1,
+upsertedCount: 0 }
+db.products.updateOne({price: 450}, {$set: {price: 450000.00}}) 
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+modifiedCount: 1,
+upsertedCount: 0 }
+db.products.renameCollection('mydbpercy')
+
+{ ok: 1 }
+db.products.renameCollection('goods')
+
+
+MongoServerError: Source collection mydb_1.products does not exist
+
+db.products.renameCollection('gogoBaby')
+
+
+MongoServerError: Source collection mydb_1.products does not exist
+
+db.madbpercy.renameCollection('products')
+
+
+MongoServerError: Source collection mydb_1.madbpercy does not exist
+
+db.mydbpercy.renameCollection('products')
+
+{ ok: 1 }
+db.mydbpercy.renameCollection('products')
+
+
+MongoServerError: Source collection mydb_1.mydbpercy does not exist
+
+db.products.renameCollection('product')
+
+{ ok: 1 }
+db.mydbpercy.renameCollection('product')
+
+
+MongoServerError: Source collection mydb_1.mydbpercy does not exist
+
+db.mydbpercy.renameCollection('products')
+
+
+MongoServerError: Source collection mydb_1.mydbpercy does not exist
+
+db.mydbpercy.renameCollection('products')
+
+
+MongoServerError: Source collection mydb_1.mydbpercy does not exist
+
+db.mydbpercy.renameCollection('product')
+
+
+MongoServerError: Source collection mydb_1.mydbpercy does not exist
+
+db.mydbpercy.renameCollection('product')
+
+
+MongoServerError: Source collection mydb_1.mydbpercy does not exist
+
+db.product.renameCollection('products')
+
+{ ok: 1 }
+db.products.insertMany([
+{ titel: 'Mersedes EQE 350+', price: 55.000, count: 4 }, 
+{ titel: 'Porsche Cayenne', price: 89.000, count: 2 }, 
+{ titel: 'VW Polo', price: 25.000, count: 1 }, 
+{ titel: 'Land Rover Discovery Sport', price: 62.000, count: 5 }, 
+{ titel: 'Lamborghini', price: 450.000, count: 2 } ])
+
+{ acknowledged: true,
+insertedIds:
+{ '0': ObjectId("62c7fd17806eeaffdf74bc92"),
+'1': ObjectId("62c7fd17806eeaffdf74bc93"),
+'2': ObjectId("62c7fd17806eeaffdf74bc94"),
+'3': ObjectId("62c7fd17806eeaffdf74bc95"),
+'4': ObjectId("62c7fd17806eeaffdf74bc96") } }
+db.products.find({ price: { $lt: 2500}})
+
+{ _id: ObjectId("62c7fd17806eeaffdf74bc92"),
+titel: 'Mersedes EQE 350+',
+price: 55,
+count: 4 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc93"),
+titel: 'Porsche Cayenne',
+price: 89,
+count: 2 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc94"),
+titel: 'VW Polo',
+price: 25,
+count: 1 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc95"),
+titel: 'Land Rover Discovery Sport',
+price: 62,
+count: 5 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc96"),
+titel: 'Lamborghini',
+price: 450,
+count: 2 }
+db.products.find({ price: { $lt: 2500.00}})
+
+{ _id: ObjectId("62c7fd17806eeaffdf74bc92"),
+titel: 'Mersedes EQE 350+',
+price: 55,
+count: 4 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc93"),
+titel: 'Porsche Cayenne',
+price: 89,
+count: 2 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc94"),
+titel: 'VW Polo',
+price: 25,
+count: 1 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc95"),
+titel: 'Land Rover Discovery Sport',
+price: 62,
+count: 5 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc96"),
+titel: 'Lamborghini',
+price: 450,
+count: 2 }
+db.products.find({ price: { $lt: 25}})
+
+
+
+db.products.find({ price: 25.000})
+
+{ _id: ObjectId("62c7fd17806eeaffdf74bc94"),
+titel: 'VW Polo',
+price: 25,
+count: 1 }
+db.products.insertOne({ title: 'лыжи' , price: 15000, count: 0 })
+
+{ acknowledged: true,
+insertedId: ObjectId("62c7ff6a806eeaffdf74bc97") }
+db.products.find({ {price: 1500 } && !{count: 0}})
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.products.find({ {price: 1500 }, !{count: 0}})
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.products.find({ {price: 1500 }, {!count: 0}})
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.products.find({ {price: 1500  && !count: 0}})
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.products.find( {price: 15000, !count: 0})
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.products.find( {price: 15000}, {count: 0})
+
+{ _id: ObjectId("62c7ff6a806eeaffdf74bc97"),
+title: 'лыжи',
+price: 15000 }
+db.products.find( {price: 15000}, {count: null})
+
+{ _id: ObjectId("62c7ff6a806eeaffdf74bc97"), count: null }
+db.products.find( {price: 15000}, {count: 0})
+
+{ _id: ObjectId("62c7ff6a806eeaffdf74bc97"),
+title: 'лыжи',
+price: 15000 }
+db.products.find( {price: 15000}, {count: 5})
+
+{ _id: ObjectId("62c7ff6a806eeaffdf74bc97"), count: 0 }
+db.products.find( {price: 25000}, {count: 2 })
+
+{ _id: ObjectId("62c7e190806eeaffdf74bc8f"), count: 1 }
+db.products.find( {price: 15000}, {count: 0})
+
+{ _id: ObjectId("62c7ff6a806eeaffdf74bc97"),
+title: 'лыжи',
+price: 15000 }
+db.products.find({count: {$ne: 0}})
+
+{ _id: ObjectId("62c7e190806eeaffdf74bc8d"),
+titel: 'Mersedes EQE 350+',
+price: 55000,
+count: 4 }
+{ _id: ObjectId("62c7e190806eeaffdf74bc8e"),
+titel: 'Porsche Cayenne',
+price: 89000,
+count: 2 }
+{ _id: ObjectId("62c7e190806eeaffdf74bc8f"),
+titel: 'VW Polo',
+price: 25000,
+count: 1 }
+{ _id: ObjectId("62c7e190806eeaffdf74bc90"),
+titel: 'Land Rover Discovery Sport',
+price: 62000,
+count: 5 }
+{ _id: ObjectId("62c7e190806eeaffdf74bc91"),
+titel: 'Lamborghini',
+price: 450000,
+count: 2 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc92"),
+titel: 'Mersedes EQE 350+',
+price: 55,
+count: 4 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc93"),
+titel: 'Porsche Cayenne',
+price: 89,
+count: 2 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc94"),
+titel: 'VW Polo',
+price: 25,
+count: 1 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc95"),
+titel: 'Land Rover Discovery Sport',
+price: 62,
+count: 5 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc96"),
+titel: 'Lamborghini',
+price: 450,
+count: 2 }
+db.products.find({count: {$ne: 0}})
+
+{ _id: ObjectId("62c7e190806eeaffdf74bc8d"),
+titel: 'Mersedes EQE 350+',
+price: 55000,
+count: 4 }
+{ _id: ObjectId("62c7e190806eeaffdf74bc8e"),
+titel: 'Porsche Cayenne',
+price: 89000,
+count: 2 }
+{ _id: ObjectId("62c7e190806eeaffdf74bc8f"),
+titel: 'VW Polo',
+price: 25000,
+count: 1 }
+{ _id: ObjectId("62c7e190806eeaffdf74bc90"),
+titel: 'Land Rover Discovery Sport',
+price: 62000,
+count: 5 }
+{ _id: ObjectId("62c7e190806eeaffdf74bc91"),
+titel: 'Lamborghini',
+price: 450000,
+count: 2 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc92"),
+titel: 'Mersedes EQE 350+',
+price: 55,
+count: 4 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc93"),
+titel: 'Porsche Cayenne',
+price: 89,
+count: 2 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc94"),
+titel: 'VW Polo',
+price: 25,
+count: 1 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc95"),
+titel: 'Land Rover Discovery Sport',
+price: 62,
+count: 5 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc96"),
+titel: 'Lamborghini',
+price: 450,
+count: 2 }
+db.products.find({count: {$ne: 0}})
+
+{ _id: ObjectId("62c7e190806eeaffdf74bc8d"),
+titel: 'Mersedes EQE 350+',
+price: 55000,
+count: 4 }
+{ _id: ObjectId("62c7e190806eeaffdf74bc8e"),
+titel: 'Porsche Cayenne',
+price: 89000,
+count: 2 }
+{ _id: ObjectId("62c7e190806eeaffdf74bc8f"),
+titel: 'VW Polo',
+price: 25000,
+count: 1 }
+{ _id: ObjectId("62c7e190806eeaffdf74bc90"),
+titel: 'Land Rover Discovery Sport',
+price: 62000,
+count: 5 }
+{ _id: ObjectId("62c7e190806eeaffdf74bc91"),
+titel: 'Lamborghini',
+price: 450000,
+count: 2 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc92"),
+titel: 'Mersedes EQE 350+',
+price: 55,
+count: 4 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc93"),
+titel: 'Porsche Cayenne',
+price: 89,
+count: 2 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc94"),
+titel: 'VW Polo',
+price: 25,
+count: 1 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc95"),
+titel: 'Land Rover Discovery Sport',
+price: 62,
+count: 5 }
+{ _id: ObjectId("62c7fd17806eeaffdf74bc96"),
+titel: 'Lamborghini',
+price: 450,
+count: 2 }
+db.products.find({price:{$gt: 25}, count: {$lt: 1}})
+
+{ _id: ObjectId("62c7ff6a806eeaffdf74bc97"),
+title: 'лыжи',
+price: 15000,
+count: 0 }
+db.products.find({price:{$gt: 25000}, count: {$lt: 1}})
+
+
+
+db.products.find({price:{$gt: 25000}, count: {$lt: 2}})
+
+
+
+db.products.find({price:{$gte: 25000}, count: {$lt: 4}})
+
+{ _id: ObjectId("62c7e190806eeaffdf74bc8e"),
+titel: 'Porsche Cayenne',
+price: 89000,
+count: 2 }
+{ _id: ObjectId("62c7e190806eeaffdf74bc8f"),
+titel: 'VW Polo',
+price: 25000,
+count: 1 }
+{ _id: ObjectId("62c7e190806eeaffdf74bc91"),
+titel: 'Lamborghini',
+price: 450000,
+count: 2 }
+db.products.deleteOne({title: 'лыжи'})
+
+{ acknowledged: true, deletedCount: 1 }
+db.products.deleteMany( count: 1})
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.products.deleteMany( {count: 1})
+
+{ acknowledged: true, deletedCount: 2 }
+db.products.insertOne({titel: 'VW Polo', price: 25.000, count: 1 })
+
+{ acknowledged: true,
+insertedId: ObjectId("62c80b50806eeaffdf74bc98") }
+db.createCollection('users')
+
+{ ok: 1 }
+db.users.insertMany([
+{ name: 'Mischel', age: 23, salary: 3800,00 }, 
+{ name: 'Percy', age: 50, salary: 31500,00 }, 
+{ name: 'Jana', age: 46, salary: 450,00 }, 
+{ name: 'Max', age: 31, salary: 1000,00  }, 
+{ name: 'Anna', age: 17, salary: 2500,00  },  { name: 'Lion', age: 33, salary: 1050,00 } ,{ name: 'Tom', age: 18, salary: 8000,00 } ]))
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.insertMany([
+{ name: 'Mischel', age: 23, salary: 3800.00 }, 
+{ name: 'Percy', age: 50, salary: 31500.00 }, 
+{ name: 'Jana', age: 46, salary: 450.00 }, 
+{ name: 'Max', age: 31, salary: 1000.00  }, 
+{ name: 'Anna', age: 17, salary: 2500.00  },  { name: 'Lion', age: 33, salary: 1050.00 } ,{ name: 'Tom', age: 18, salary: 8000,00 } ]))
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.insertMany([
+{ name: 'Mischel', age: 23, salary: 3800,00 }, 
+{ name: 'Percy', age: 50, salary: 31500,00 }, 
+{ name: 'Jana', age: 46, salary: 450,00 }, 
+{ name: 'Max', age: 31, salary: 1000,00  }, 
+{ name: 'Anna', age: 17, salary: 2500,00  },  { name: 'Lion', age: 33, salary: 1050.00 } ,{ name: 'Tom', age: 18, salary: 8000.00 }])
+
+
+
+{ acknowledged: true,
+insertedIds:
+{ '0': ObjectId("62c8537e806eeaffdf74bc99"),
+'1': ObjectId("62c8537e806eeaffdf74bc9a"),
+'2': ObjectId("62c8537e806eeaffdf74bc9b"),
+'3': ObjectId("62c8537e806eeaffdf74bc9c"),
+'4': ObjectId("62c8537e806eeaffdf74bc9d"),
+'5': ObjectId("62c8537e806eeaffdf74bc9e"),
+'6': ObjectId("62c8537e806eeaffdf74bc9f") } }
+db.users.updateMany({salary: {$lt: 10000.00},{$set: {salary: 20}}})
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.updateMany({salary: {$lt: 10000.00},{$set: {salary: 20}})
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.updateMany({salary: 10000.00},{$set: {salary: 20}})
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 0,
+modifiedCount: 0,
+upsertedCount: 0 }
+db.users.updateMany({salary: {$lt: 10000.00}},{$set: {salary: 20}}})
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.updateMany({salary:{$lt: 1500.00}},{$set: {salary: 20}}})
+
+
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+
+db.users.updateMany({salary:{$lt: 1500.00}},{$set: {salary: 20}})
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 3,
+modifiedCount: 3,
+upsertedCount: 0 }
+db.users.deleteMany({age: {$lt: 20}})
+
+{ acknowledged: true, deletedCount: 2 }
+db.users.updateOne({salary: 3800.00}, {$set: {salary: 367000.00}})
+
+{ acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+modifiedCount: 1,
+upsertedCount: 0 }
+Atlas atlas-s6cm2n-shard-0 [primary] mydb_1
+
+
