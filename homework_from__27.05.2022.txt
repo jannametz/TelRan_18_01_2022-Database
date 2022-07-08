@@ -1,4 +1,4 @@
-HOMEWORK from 27.0.2022 LEFT JOIN && 
+HOMEWORK from 27.05.2022 LEFT JOIN && 
 Необходимо решить данные номера задач на сайте https://www.sql-ex.ru/learn_exercises.php?LN=1
 (6, 7, 9, 14, 16, 29, 34, 36, 38, 49, 50)
 
