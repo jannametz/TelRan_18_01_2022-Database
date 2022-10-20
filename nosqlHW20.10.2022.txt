@@ -1,0 +1,63 @@
+HOMEWORT 20.10.2022 first level
+
+Order(id, date)
+OrderArtikel(order_id, product_id, quantity)
+Product(id,name)
+Paytment(order_id,summe)
+
+It can look in  this document aggregate
+//orders 
+db.orders.insertMany([{
+    'orders_id' : '20201',
+    'date' : '01.10.2022',
+    'product_id' : '009876',
+    'quantity' : 5.0,
+    'product_name' : 'Baby Jacke aus Merino Wollfleece',
+    'paytment_id' : 'ik98765',
+    'paytment_summe' : 69.99
+},
+{
+    'orderts_id' : '20202',
+    'date' : '05.10.2022',
+    'product_id' : '00987777',
+    'quantity' : 1.0,
+    'product_name' : 'Baby Jacke aus Wollfrottee Schokobraun',
+    'paytment_id' : 'oi965',
+    'paytment_summe' : 49.99
+},
+{
+    'orders_id' : '20203',
+    'date' : '09.10.2022',
+    'product_id' : '432156777',
+    'quantity' : 3.0,
+    'product_name' : 'Baby Paket Grau Gr. 62',
+    'paytment_id' : '98k765',
+    'paytment_summe' : 64.97
+}])
+
+// second Level
+
+Der Kaufvorgang aus Sicht des Käufers im Online-Shop ist:
+
+a. Suchen Sie auf den Seiten nach dem gewünschten Produkt
+b. Die Auswahl der Waren auf der Grundlage des Preises, der Bewertungen und der Lieferbedingungen
+c. Hinzufügen zum Warenkorb
+d. Bestellung aufgeben
+e. Wahl der Zahlungs- und Liefermöglichkeiten
+f. Warenannahme
+g. Produktfeedback
+
+Für einen Online-Shop sieht der Geschäftsprozess des Verkaufers wie folgt aus:
+
+a. Gewinnung von Käufern durch Werbung, Marketingkanäle
+b. Überzeugung, dieses Produkt in diesem Geschäft zu kaufen
+c.  Produkt in den Warenkorb zu legen
+d. Ein Angebot zur Auswahl zusätzlicher oder verwandter Produkte
+e. Bestellung aufgeben
+f. Anbieten von Liefer- und Zahlungsoptionen, detaillierte Informationen zu den Bedingungen der Zusammenarbeit mit dem Geschäft
+g. Auftragsbestätigung
+h. Versand von Waren an den Kunden
+i. Zahlungseingang
+j. Kundenbindung und Wiederholungskäufe
+
+
